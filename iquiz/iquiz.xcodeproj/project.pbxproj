@@ -14,6 +14,7 @@
 		20E037C82188367B00BBF2AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E037C62188367B00BBF2AE /* LaunchScreen.storyboard */; };
 		20E037D32188367B00BBF2AE /* iquizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E037D22188367B00BBF2AE /* iquizTests.swift */; };
 		20E037DE2188367B00BBF2AE /* iquizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E037DD2188367B00BBF2AE /* iquizUITests.swift */; };
+		20E037EC21886A7C00BBF2AE /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E037EB21886A7C00BBF2AE /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		20E037D92188367B00BBF2AE /* iquizUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iquizUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E037DD2188367B00BBF2AE /* iquizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iquizUITests.swift; sourceTree = "<group>"; };
 		20E037DF2188367B00BBF2AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20E037EB21886A7C00BBF2AE /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				20E037BD2188367B00BBF2AE /* AppDelegate.swift */,
 				20E037BF2188367B00BBF2AE /* ViewController.swift */,
 				20E037C12188367B00BBF2AE /* Main.storyboard */,
+				20E037EB21886A7C00BBF2AE /* TableViewCell.swift */,
 				20E037C42188367B00BBF2AE /* Assets.xcassets */,
 				20E037C62188367B00BBF2AE /* LaunchScreen.storyboard */,
 				20E037C92188367B00BBF2AE /* Info.plist */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20E037EC21886A7C00BBF2AE /* TableViewCell.swift in Sources */,
 				20E037C02188367B00BBF2AE /* ViewController.swift in Sources */,
 				20E037BE2188367B00BBF2AE /* AppDelegate.swift in Sources */,
 			);
