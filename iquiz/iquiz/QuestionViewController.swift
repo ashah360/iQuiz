@@ -9,27 +9,20 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
-    
     var appData = AppData.shared
-    
-    
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var a1: UIButton!
     @IBOutlet weak var a2: UIButton!
     @IBOutlet weak var a3: UIButton!
     @IBOutlet weak var a4: UIButton!
     @IBOutlet weak var submit: UIButton!
-    
     var answerSelected = ""
-    
     var numRight = 0
-    
     var questionCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         newQuestion()
-        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
         swipeRight.direction = .right
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
