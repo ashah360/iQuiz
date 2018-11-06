@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    var appData = AppData.shared
+    
     var quizSubjects = ["Sports", "Games", "Music"]
     var subjectDescs = ["Lets get sweaty", "Video Games", "Feel the melody"]
     var imgs = ["sports", "games", "music"]
@@ -42,6 +44,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        appData.topicIndex = indexPath.row
+        performSegue(withIdentifier: "showQuestion", sender: self)
     }
     
     
