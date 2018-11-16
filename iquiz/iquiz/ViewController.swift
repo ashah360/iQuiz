@@ -56,13 +56,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func settingsClicked(_ sender: Any) {
-        let uiAlert = UIAlertController(title: "Settings", message: "Enter a JSON URL", preferredStyle: .alert)
+        let uiAlert = UIAlertController(title: "Settings", message: "JSON URL", preferredStyle: .alert)
         uiAlert.addTextField {(textField: UITextField) in
             self.urlTextField = textField
-            self.urlTextField.placeholder = "Enter url here"
+            self.urlTextField.placeholder = "Enter url"
         }
         uiAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        uiAlert.addAction(UIAlertAction(title: "Check now", style: .default, handler:{
+        uiAlert.addAction(UIAlertAction(title: "Check", style: .default, handler:{
             (act: UIAlertAction) in
             if((self.urlTextField.text) != nil){
                 self.fetchJson(self.urlTextField.text!)
@@ -95,13 +95,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 fetchJson(jsonUrlString)
             }
         }else{
-            let alert = UIAlertController(title: "No Internet", message: "Using local data", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Offline", message: "Using local data", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
-            print("no internet, grabbing from user default");
+            print("Offline, grabbing from user default");
             let anyData = defaults.object(forKey: "quizData")
             if(anyData == nil){
-                let alert = UIAlertController(title: "No Local Data", message: "Please connect to internet", preferredStyle: .alert)
+                let alert = UIAlertController(title: "No Local Data", message: "Connect to internet", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }else{
@@ -163,7 +163,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func failDownloadAlert(){
-        let alert = UIAlertController(title: "Download Failed", message: "Please check internet/ data URL/ data format", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Failed to Download", message: "Please check internet or URL format", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

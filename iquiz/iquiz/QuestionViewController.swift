@@ -9,7 +9,6 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
-    var appData = AppData.shared
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var a1: UIButton!
     @IBOutlet weak var a2: UIButton!
@@ -42,8 +41,6 @@ class QuestionViewController: UIViewController {
         if (sender.direction == .right) {
             performSegue(withIdentifier: "segueAnswer", sender: self)
         } else if (sender.direction == .left) {
-            totalAnswered = 0
-            correctAns = 0
             performSegue(withIdentifier: "goBackHome", sender: self)
         }
     }
@@ -84,8 +81,11 @@ class QuestionViewController: UIViewController {
         question.text = jsonData?[categoryIndex].questions[currentQuestion].text
         question.font = UIFont.italicSystemFont(ofSize: 18.0)
         numOfQuestions = (jsonData?[categoryIndex].questions.count)!
+        print("--data--")
         print(categoryIndex)
+        print(correctAns);
         print(currentQuestion)
+        print("--")
         a1.setTitle(jsonData?[categoryIndex].questions[currentQuestion].answers[0], for: .normal)
         a2.setTitle(jsonData?[categoryIndex].questions[currentQuestion].answers[1], for: .normal)
         a3.setTitle(jsonData?[categoryIndex].questions[currentQuestion].answers[2], for: .normal)

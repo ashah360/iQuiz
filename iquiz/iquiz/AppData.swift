@@ -8,6 +8,7 @@
 
 import UIKit
 
+/*
 class AppData: NSObject {
     static var shared = AppData()
     open var subjects = ["Sports", "Games", "Music"]
@@ -28,4 +29,4 @@ class AppData: NSObject {
     open var questionText = ""
     open var answerText = ""
     open var correctAnswer = false
-}
+}*/

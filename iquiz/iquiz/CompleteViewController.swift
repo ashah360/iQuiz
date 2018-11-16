@@ -10,9 +10,6 @@ import UIKit
 
 class CompleteViewController: UIViewController {
     
-    var appData = AppData.shared
-    
-    
     @IBOutlet weak var reaction: UILabel!
     @IBOutlet weak var result: UILabel!
     
@@ -36,7 +33,7 @@ class CompleteViewController: UIViewController {
         reaction.numberOfLines = 2;
         reaction.text = res
 
-        result.text = "You answered " + String(finalScore) + " out of " + String(numOfQuestions) + " questions correctly"
+        result.text = "You answered " + String(finalScore) + " out of " + String(numOfQuestions)
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
         swipeLeft.direction = .left
@@ -51,8 +48,6 @@ class CompleteViewController: UIViewController {
 
     @IBAction func backPressed(_ sender: Any) {
         performSegue(withIdentifier: "goBackHome", sender: self)
-        appData.numGuessed = 0
-        appData.numRight = 0
     }
     
     override func didReceiveMemoryWarning() {

@@ -9,9 +9,7 @@
 import UIKit
 
 class AnswerViewController: UIViewController {
-    
-    var appData = AppData.shared
-    
+        
     @IBOutlet weak var answer: UILabel!
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var reaction: UILabel!
@@ -34,7 +32,6 @@ class AnswerViewController: UIViewController {
         question.font = UIFont.italicSystemFont(ofSize: 15.0)
         answer.text = jsonData?[categoryIndex].questions[curQue].answers[ans-1]
         answer.textColor = UIColor.orange
-        answer.text = appData.answerText
         
         if (answer.text == guessed) {
             score += 1
@@ -61,8 +58,6 @@ class AnswerViewController: UIViewController {
         if (sender.direction == .right) {
             nextPressed(sender)
         } else if (sender.direction == .left) {
-            appData.numRight = 0
-            appData.numGuessed = 0
             performSegue(withIdentifier: "goBackHome", sender: self)
         }
     }
