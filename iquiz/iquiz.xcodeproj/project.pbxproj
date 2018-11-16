@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2066546F219EEED900C29BCF /* NetworkReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2066546E219EEED900C29BCF /* NetworkReachability.swift */; };
 		20BEDF3E2191750600AAA489 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDF3D2191750600AAA489 /* QuestionViewController.swift */; };
 		20BEDF402191799700AAA489 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDF3F2191799700AAA489 /* AnswerViewController.swift */; };
 		20BEDF4221917D4800AAA489 /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDF4121917D4800AAA489 /* CompleteViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2066546E219EEED900C29BCF /* NetworkReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachability.swift; sourceTree = "<group>"; };
 		20BEDF3D2191750600AAA489 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		20BEDF3F2191799700AAA489 /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		20BEDF4121917D4800AAA489 /* CompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				20BEDF4121917D4800AAA489 /* CompleteViewController.swift */,
 				20BEDF3F2191799700AAA489 /* AnswerViewController.swift */,
 				20BEDF3D2191750600AAA489 /* QuestionViewController.swift */,
+				2066546E219EEED900C29BCF /* NetworkReachability.swift */,
 				20E037EB21886A7C00BBF2AE /* TableViewCell.swift */,
 				20E037C42188367B00BBF2AE /* Assets.xcassets */,
 				20E037C62188367B00BBF2AE /* LaunchScreen.storyboard */,
@@ -281,6 +284,7 @@
 				20E037BE2188367B00BBF2AE /* AppDelegate.swift in Sources */,
 				20BEDF4221917D4800AAA489 /* CompleteViewController.swift in Sources */,
 				20BEDF46219181BE00AAA489 /* AppData.swift in Sources */,
+				2066546F219EEED900C29BCF /* NetworkReachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

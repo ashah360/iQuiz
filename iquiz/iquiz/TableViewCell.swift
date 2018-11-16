@@ -11,9 +11,9 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var subject: UILabel!
-    
-    
+    @IBOutlet weak var quizImage: UIImageView!
     @IBOutlet weak var subjectDesc: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

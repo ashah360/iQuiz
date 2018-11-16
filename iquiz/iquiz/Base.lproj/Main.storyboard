@@ -24,7 +24,7 @@
                                 <items>
                                     <barButtonItem title="Settings" id="rJ4-Bb-hiA">
                                         <connections>
-                                            <action selector="clickSettings:" destination="BYZ-38-t0r" id="9vU-XI-1FO"/>
+                                            <action selector="settingsClicked:" destination="BYZ-38-t0r" id="OZA-tk-Ijw"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -76,6 +76,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="quizImage" destination="NhW-4a-AAH" id="IEl-UE-lSR"/>
                                             <outlet property="subject" destination="Sw0-dI-94A" id="1by-42-IlM"/>
                                             <outlet property="subjectDesc" destination="Qws-6f-Lf4" id="FQb-HJ-Tdp"/>
                                             <segue destination="bZC-SL-0vM" kind="show" identifier="showQuestion" id="BEQ-cf-7Xq"/>
@@ -97,7 +98,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="2gg-vy-LxL" id="DJd-sQ-3Pz"/>
+                        <outlet property="tableView" destination="2gg-vy-LxL" id="Ugw-uI-6p6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -130,6 +131,7 @@
                                 <rect key="frame" x="114" y="581" width="146" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
+                                    <action selector="submitPressed:" destination="bZC-SL-0vM" eventType="touchUpInside" id="xHL-0Y-JH6"/>
                                     <segue destination="f0q-5T-UTL" kind="show" identifier="segueAnswer" id="0Sj-Xa-Irx"/>
                                 </connections>
                             </button>
@@ -328,6 +330,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ugm-wa-1cK"/>
+        <segue reference="Nnd-7v-jm2"/>
     </inferredMetricsTieBreakers>
 </document>

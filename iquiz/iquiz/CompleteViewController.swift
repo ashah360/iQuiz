@@ -16,21 +16,27 @@ class CompleteViewController: UIViewController {
     @IBOutlet weak var reaction: UILabel!
     @IBOutlet weak var result: UILabel!
     
+    var finalScore = 0
+    var subjectName = ""
+    var res = ""
+    var numOfQuestions = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
-        if (appData.numRight == 4) {
-            reaction.text = "Flawless!"
+        if (finalScore == numOfQuestions) {
+            res = "Flawless!"
         }
-        else if (appData.numRight == 2 || appData.numRight == 3) {
-            reaction.text = "You were close!"
+        else if (finalScore > 0) {
+            res = "Good"
         }
         else {
-            reaction.text = "*cue sad violin*"
+            res = "Try Again :("
         }
-        result.text = "You answered " + String(appData.numRight) + " out of 4 questions correctly"
+        reaction.numberOfLines = 2;
+        reaction.text = res
+
+        result.text = "You answered " + String(finalScore) + " out of " + String(numOfQuestions) + " questions correctly"
         
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
         swipeLeft.direction = .left

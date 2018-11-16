@@ -16,9 +16,16 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var a3: UIButton!
     @IBOutlet weak var a4: UIButton!
     @IBOutlet weak var submit: UIButton!
-    var answerSelected = ""
-    var numRight = 0
-    var questionCount = 0
+    
+    var jsonData: [Quiz]? = nil
+    var categoryIndex: Int = -1
+    var pressedTime = 0
+    var guessed = ""
+    var totalAnswered = 0
+    var score = 0
+    var currentQuestion = 0
+    var correctAns = 0
+    var numOfQuestions = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,87 +42,64 @@ class QuestionViewController: UIViewController {
         if (sender.direction == .right) {
             performSegue(withIdentifier: "segueAnswer", sender: self)
         } else if (sender.direction == .left) {
-            appData.numGuessed = 0
-            appData.numRight = 0
+            totalAnswered = 0
+            correctAns = 0
             performSegue(withIdentifier: "goBackHome", sender: self)
         }
     }
     
     
     @IBAction func A1_Action(_ sender: Any) {
-        buttonClicked()
-        answerSelected = a1.titleLabel!.text!
-        a1.backgroundColor = UIColor.lightGray
-        a1.setTitleColor(UIColor.white, for: .normal)
-        appData.correctAnswer = (answerSelected == appData.answerText)
+        clearAnswer()
+        a1.setTitleColor(.red, for: .normal)
+        pressedTime += 1
+        guessed = a1.title(for: .normal)!
     }
     
     
     @IBAction func A2_Action(_ sender: Any) {
-        buttonClicked()
-        answerSelected = a2.titleLabel!.text!
-        a2.backgroundColor = UIColor.lightGray
-        a2.setTitleColor(UIColor.white, for: .normal)
-        appData.correctAnswer = (answerSelected == appData.answerText)
+        clearAnswer()
+        a2.setTitleColor(.red, for: .normal)
+        pressedTime += 1
+        guessed = a2.title(for: .normal)!
     }
     
     @IBAction func A3_Action(_ sender: Any) {
-        buttonClicked()
-        answerSelected = a3.titleLabel!.text!
-        a3.backgroundColor = UIColor.lightGray
-        a3.setTitleColor(UIColor.white, for: .normal)
-        appData.correctAnswer = (answerSelected == appData.answerText)
+        clearAnswer()
+        a3.setTitleColor(.red, for: .normal)
+        pressedTime += 1
+        guessed = a3.title(for: .normal)!
     }
     
     @IBAction func A4_Action(_ sender: Any) {
-        buttonClicked()
-        answerSelected = a4.titleLabel!.text!
-        a4.backgroundColor = UIColor.lightGray
-        a4.setTitleColor(UIColor.white, for: .normal)
-        appData.correctAnswer = (answerSelected == appData.answerText)
+        clearAnswer()
+        a4.setTitleColor(.red, for: .normal)
+        pressedTime += 1
+        guessed = a4.title(for: .normal)!
     }
     
-    func buttonClicked() {
-        a1.backgroundColor = UIColor.white
-        a1.setTitleColor(UIColor.black, for: .normal)
-        
-        a2.backgroundColor = UIColor.white
-        a2.setTitleColor(UIColor.black, for: .normal)
-        
-        a3.backgroundColor = UIColor.white
-        a3.setTitleColor(UIColor.black, for: .normal)
-        
-        a4.backgroundColor = UIColor.white
-        a4.setTitleColor(UIColor.black, for: .normal)
-    }
-
+  
     func newQuestion() {
-        let numGuessed = appData.numGuessed
-        switch appData.topicIndex {
-        case 0:
-            question.text = appData.sportsQuestions[numGuessed]
-            appData.questionText = appData.sportsQuestions[numGuessed]
-            a1.setTitle(appData.sportsChoices[numGuessed][0], for: .normal)
-            a2.setTitle(appData.sportsChoices[numGuessed][1], for: .normal)
-            a3.setTitle(appData.sportsChoices[numGuessed][2], for: .normal)
-            a4.setTitle(appData.sportsChoices[numGuessed][3], for: .normal)
-            appData.answerText = appData.sportsAnswers[numGuessed]
-        case 1:
-            question.text = appData.gameQuestions[numGuessed]
-            appData.questionText = appData.gameQuestions[numGuessed]
-            a1.setTitle(appData.gameChoices[numGuessed][0], for: .normal)
-            a2.setTitle(appData.gameChoices[numGuessed][1], for: .normal)
-            a3.setTitle(appData.gameChoices[numGuessed][2], for: .normal)
-            a4.setTitle(appData.gameChoices[numGuessed][3], for: .normal)
-            appData.answerText = appData.gameAnswers[numGuessed]
-        default:
-            question.text = appData.musicQuestions[numGuessed]
-            appData.questionText = appData.musicQuestions[numGuessed]
-            a1.setTitle(appData.musicChoices[numGuessed][0], for: .normal)
-            a2.setTitle(appData.musicChoices[numGuessed][1], for: .normal)
-            a3.setTitle(appData.musicChoices[numGuessed][2], for: .normal)
-            a4.setTitle(appData.musicChoices[numGuessed][3], for: .normal)
-            appData.answerText = appData.musicAnswers[numGuessed]
+        question.numberOfLines = 3
+        question.text = jsonData?[categoryIndex].questions[currentQuestion].text
+        question.font = UIFont.italicSystemFont(ofSize: 18.0)
+        numOfQuestions = (jsonData?[categoryIndex].questions.count)!
+        print(categoryIndex)
+        print(currentQuestion)
+        a1.setTitle(jsonData?[categoryIndex].questions[currentQuestion].answers[0], for: .normal)
+        a2.setTitle(jsonData?[categoryIndex].questions[currentQuestion].answers[1], for: .normal)
+        a3.setTitle(jsonData?[categoryIndex].questions[currentQuestion].answers[2], for: .normal)
+        a4.setTitle(jsonData?[categoryIndex].questions[currentQuestion].answers[3], for: .normal)
+        correctAns = Int((jsonData?[categoryIndex].questions[currentQuestion].answer)!)!
+    }
+    
+    func clearAnswer() {
+        if (pressedTime == 1) {
+            a1.setTitleColor(UIView().tintColor, for: .normal)
+            a2.setTitleColor(UIView().tintColor, for: .normal)
+            a3.setTitleColor(UIView().tintColor, for: .normal)
+            a4.setTitleColor(UIView().tintColor, for: .normal)
+            pressedTime = 0
         }
     }
     
@@ -126,6 +110,21 @@ class QuestionViewController: UIViewController {
     
     @IBAction func backPressed(_ sender: Any) {
         performSegue(withIdentifier: "goBackHome", sender: self)
+    }
+    
+    @IBAction func submitPressed(_ sender: Any) {
+        totalAnswered += 1
+        let thirdVC = self.storyboard?.instantiateViewController(withIdentifier: "AnswerViewController") as! AnswerViewController
+        thirdVC.guessed = guessed
+        thirdVC.que = question.text!
+        thirdVC.ans = correctAns
+        thirdVC.totalAnswered = totalAnswered
+        thirdVC.score = score
+        thirdVC.curQue = currentQuestion
+        thirdVC.categoryIndex = categoryIndex
+        thirdVC.jsonData = jsonData
+        thirdVC.numOfQuestions = numOfQuestions
+        self.present(thirdVC, animated: false, completion: nil)
     }
     
     /*

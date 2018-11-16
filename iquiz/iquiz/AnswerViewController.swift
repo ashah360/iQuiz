@@ -16,25 +16,36 @@ class AnswerViewController: UIViewController {
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var reaction: UILabel!
     
-    var correctAnswer = false
-    var numGuessed = 0
-    var questionCount = 0
-    
+    var que = ""
+    var ans = 0
+    var guessed = ""
+    var totalAnswered = 0
+    var score = 0
+    var result = ""
+    var curQue = 0
+    var categoryIndex = -1
+    var jsonData: [Quiz]? = nil
+    var numOfQuestions = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        appData.numGuessed+=1
-        
-        question.text = appData.questionText
+        question.numberOfLines = 5
+        question.text = que
+        question.font = UIFont.italicSystemFont(ofSize: 15.0)
+        answer.text = jsonData?[categoryIndex].questions[curQue].answers[ans-1]
+        answer.textColor = UIColor.orange
         answer.text = appData.answerText
-        if appData.correctAnswer {
-            appData.numRight+=1
+        
+        if (answer.text == guessed) {
+            score += 1
+            result = "Awesome, correct!"
+        }
+        else {
+            result = "Oops, incorrect :("
         }
         
-        reaction.text = appData.correctAnswer ? "Awesome!" : ":("
-        
-        answer.backgroundColor = appData.correctAnswer ? #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1) : #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-        answer.textColor = UIColor.white
+        reaction.numberOfLines = 5
+        reaction.text = result
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swipe))
         swipeRight.direction = .right
@@ -57,14 +68,20 @@ class AnswerViewController: UIViewController {
     }
     
     @IBAction func nextPressed(_ sender: Any) {
-        let numGuessed = appData.numGuessed
-        print(numGuessed)
-        if (numGuessed < 4) {
-            let destination = self.storyboard?.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
-            self.present(destination, animated: true, completion: nil)
+        if (totalAnswered < numOfQuestions) {
+            let secondVC = self.storyboard?.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
+            secondVC.totalAnswered = self.totalAnswered
+            secondVC.score = score
+            secondVC.currentQuestion = curQue + 1
+            secondVC.categoryIndex = categoryIndex
+            secondVC.jsonData = jsonData
+            secondVC.numOfQuestions = numOfQuestions
+            self.present(secondVC, animated: false, completion: nil)
         } else {
-            let destination = self.storyboard?.instantiateViewController(withIdentifier: "CompleteViewController") as! CompleteViewController
-            self.present(destination, animated: true, completion: nil)
+            let fourthVC = self.storyboard?.instantiateViewController(withIdentifier: "CompleteViewController") as! CompleteViewController
+            fourthVC.finalScore = score
+            fourthVC.numOfQuestions = numOfQuestions
+            self.present(fourthVC, animated: false, completion: nil)
         }
     }
     
